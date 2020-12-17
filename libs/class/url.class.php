@@ -1,5 +1,6 @@
 <?php
     require_once(dirname(__FILE__) . '/../sql/ExportDB.class.php');
+    use MyB\Error;
     require_once(dirname(__FILE__) . '/error.class.php');
     class URL {
         protected $uri;
@@ -26,13 +27,12 @@
         }
         public function url_handling(){
             $sql = $this->connectDB();
-            $error = new MybError();
             require_once(dirname(__FILE__) . "/../template/template.class.php");
             $template = new Template();
             require_once(dirname(__FILE__) . "/../template/template.config.php");
             $i = 0;
             foreach ( $this->rules as $action => $rule ) {
-                if ( preg_match( '#^'.$rule.'$#', $this->url, $params) ) {
+                if ( preg_match( '~^'.$rule.'$~i', $this->url, $params) ) {
                     switch($action){
                         default:
                             return require($this->dir . $action . ".php");
@@ -40,37 +40,11 @@
                         case 'dash':
                             return require($this->dir . $params[1] . ".php");
                         break;
-                        case 'dash_files':
-                            $ext = $extensao = pathinfo($params[1], PATHINFO_EXTENSION);
-                            switch($ext){
-                                default:
-                                    return $error->get('404');
-                                break;
-                                case 'css':
-                                    header('Content-Type: text/css');
-                                break;
-                                case 'jpg':
-                                    header('Content-type: image/jpeg');
-                                break;
-                                case 'png':
-                                    header('Content-Type: image/png');
-                                break;
-                                case 'js':
-                                    header('Content-Type: text/javascript');
-                                break;
-                            }
-                                $file_uri = dirname( __FILE__ ) . '/../../src/dash/' . $params[1];
-                                if($file = @file_get_contents($file_uri)){
-                                    return exit($file);
-                                }else{
-                                    return $error->get('404');
-                                }
-                        break;
                         case 'static':
                             $ext = $extensao = pathinfo($params[1], PATHINFO_EXTENSION);
                             switch($ext){
                                 default:
-                                    return $error->get('404');
+                                    return Error::Get('404');
                                 break;
                                 case 'css':
                                     header('Content-Type: text/css');
@@ -85,12 +59,8 @@
                                     header('Content-Type: text/javascript');
                                 break;
                             }
-                            $fileU = dirname( __FILE__ ) . '/../../global/templates/' . $template->theme . '/' . $params[1];
-                            if($file = @file_get_contents($fileU)){
-                                return exit($file);
-                            }else{
-                                return $error->get('404');
-                            }
+                            $file = file_get_contents(dirname( __FILE__ ) . '/../../global/templates/' . $template->theme . '/' . $params[1]);
+                            return exit($file);
                         break;
                     }
                 }
@@ -99,7 +69,7 @@
             $i = intval($i);
             $ruleCount = intval(count($this->rules));
             if($i = $ruleCount){
-                return $error->get('404');
+                return Error::Get('404');
             }
             
         }

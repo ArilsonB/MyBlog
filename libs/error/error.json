@@ -11,6 +11,12 @@
         "file":"%s",
         "line":"%s"
     },
+    "405":{
+        "code":"405",
+        "message": "The URL '%s' not found on this server.",
+        "file":"%s",
+        "line":"%s"
+    },
     "500":{
         "code":"500",
         "message":"",

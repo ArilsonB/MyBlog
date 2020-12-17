@@ -1,26 +1,28 @@
 <?php
-
-    $blogtitle = $sql->select("preferences","value","name = 'blog_name'");
-    $templateN = $sql->select("preferences","value","name = 'blog_template'");
-    $blogurl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
-    $blogurlUp = $sql->query("UPDATE preferences SET value = '$blogurl' WHERE name = 'blog_url'");
-    $template->conn = "";
-    $template->blogtitle = $blogtitle;
-    $template->blogdesc = $sql->select("preferences","value","name = 'blog_desc'","*");
-    $template->blog_url = $blogurl;
-    $template->template_style = $blogurl . "/global/templates/" . $templateN . "/style.css";
-    $template->js_folder = $blogurl . "/global/templates/" . $templateN . "/assets/js/";
-
-    /* Styles */
-    $template->__set("styles",$blogurl . "/static/assets/css/");
-    $template->__set("styles:default",$blogurl . "/static/style.css");
-
-    /* Javascripts */
-    $template->__set("scripts",$blogurl . "/static/assets/js/");
-    
-    /* Urls */
-    $template->__set("url:blog", $blogurl);
-    $template->__set("url:home", $blogurl);
-
+    namespace Myb;
+    require_once(dirname(__FILE__) . '/../sql/ExportDB.class.php');
+    class themeConfig {
+        var $config;
+        protected $conn;
+        private static function connectDB(){
+            return ExportDB::getDB();
+        }
+        public function Settings(){
+            $conn = self::connectDB();
+            $config['theme'] = $conn->select("preferences","value","name = 'blog_template'");
+            return $config;
+        }
+        public function Theme(){
+            $conn = self::connectDB();
+            $this->__set('blog:title', $conn->select("preferences","value","name = 'blog_name'"));
+            $this->__set('blog:desc', $conn->select("preferences","value","name = 'blog_desc'"));
+            $this->__set('blog:description', $conn->select("preferences","value","name = 'blog_desc'"));
+            $this->__set('blog:url', $this->getUrl);
+            $this->__set('aa','aaa');
+            $this->__set("styles:default", $this->getUrl."/static/style.css");
+            $this->__set("version","1.0");
+            
+        }
+    }
 
 ?>

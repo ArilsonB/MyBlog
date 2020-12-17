@@ -1,4 +1,5 @@
 <?php
+    namespace Myb;
     require_once(dirname(__FILE__) . '/pdo.class.php');
     class ExportDB {
         private static $sql;

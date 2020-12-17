@@ -1,10 +1,10 @@
 <?php
-    /**
-     * * MyBlog powered by TryUps Inc.
-     * ? Eureka!
-     * @param string.
+    /*
+     * MyBlog powered by TryUps Inc.
+     * Version 2.0.X-alpha.1
     */
 
-    require_once(dirname(__FILE__) . "/libs/class/headers.class.php");
-    require_once(dirname(__FILE__) . "/libs/core/core.class.php");
+
+    require_once(dirname(__FILE__) . "/libs/core/myb.core.php");
+    
 ?>

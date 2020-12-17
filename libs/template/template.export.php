@@ -1,5 +1,6 @@
 <?php
-    require(dirname(__FILE__) . '/template.class.php');
+    namespace Myb;
+    require(dirname(__FILE__) . '/../class/template.class.php');
     class ExpoTemplate {
         private static $template;
 

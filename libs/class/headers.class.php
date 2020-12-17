@@ -9,10 +9,11 @@
         $error = error_get_last();
         $e = $error['message'];
         $fe = @file_get_contents(dirname(__FILE__) . '/../error/error.html');
-        exit($fe . $e);
+        $e = sprintf($fe, $e);
+        exit($e);
     }
     define("MODE","development");
     $protocol = isset($_SERVER["HTTPS"]) ? 'https' : 'http';
     define("URL","$protocol://$_SERVER[HTTP_HOST]");
-    //TODO: error_reporting(E_ALL ^ E_NOTICE);
+    //error_reporting(E_ALL ^ E_NOTICE);
 ?>

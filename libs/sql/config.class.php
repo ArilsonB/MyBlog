@@ -1,4 +1,5 @@
 <?php
+    namespace Myb;
     class Config {
         var $settings;
         public function Settings(){

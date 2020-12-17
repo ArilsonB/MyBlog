@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-rendering: optimizeLegibility;
+    box-sizing: border-box;
+}
+
+body {
+    position: absolute;
+    display:flex;
+    background: #e2e1e0;
+    height:100%;
+    width:100%;
+    font-family: 'Open Sans', sans-serif;
+}
+
+main {
+    position: relative;
+    float: left;
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section.box {
+    position: relative;
+    width:300px;
+    background: #fff;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    height:auto;
+    transition: height linear 0.5s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+section.box > .login-header {
+    position: relative;
+    width:100%;
+    height:100px;
+    background: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+    display: flex;
+    justify-content: center;
+    color: #fff;
+    align-items: center;
+    border-radius: 5px 5px 0 0;
+}
+
+div.user {
+    position: relative;
+    margin-bottom: 15px;
+
+}
+
+
+
+input {
+    margin-top: 10px;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    outline:0;
+    width:100%;
+    font-weight: bold;
+
+}
+
+input ~ label {
+    position: absolute;
+    top: 20px;
+    font-size: 14px;
+    left:10px;
+    color: rgba(0,0,0,0.4);
+    transition: .4s;
+    font-weight: bold;
+}
+
+input:focus ~ label,
+input:valid ~ label {
+    transform: translateY(-30px);
+    font-size: 0.8em;
+    left: 0px;
+    letter-spacing: 0.03em;
+}
+
+.pass {
+    position: relative;
+    display: none;
+    margin-bottom: 15px;
+}
+
+label > h2 {
+    text-align: center;
+    margin: 10px;
+}
+
+form {
+    margin: 10px;
+}
+
+button {
+    width:100%;
+    padding:10px;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    outline:0;
+    border-radius: 5px;
+}
+
+p.myb__infos {
+    width:calc(100% - 22px);
+    padding:10px;
+    font-weight:bold;
+    margin:10px;
+    text-align:center;
+    border-radius:5px;
+    border:1px solid #ddd;
+    display: none;
+    transition: all 1s ease-in-out;
+}
+
+p.myb__infos.success {
+    border: 1px solid green;
+    background: greenyellow;
+}
+p.myb__infos.error {
+    border:1px solid red;
+    background: #DD0000;
+}
+p.myb__infos.notice {
+    border: 1px solid yellow;
+    background: yellow;
+}

@@ -1,0 +1,27 @@
+:host {
+    background-color: #fff;
+}
+
+#myb-text {
+    flex:1;
+    display:block;
+    max-width: 100%;
+    white-space: nowrap;
+    word-wrap: break-word;
+    word-break: break-all;
+    outline: 0;
+    padding-bottom: 10px;
+}
+
+#myb-text::after {
+    clear: both;
+    display: block;
+    content: "";
+    height: 0;
+}
+
+blockquote {
+    background-color: gray;
+    padding:10px;
+    padding-left: 30px;
+}

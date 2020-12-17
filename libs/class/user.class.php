@@ -1,5 +1,7 @@
 <?php
 
+namespace Myb;
+
 require_once(dirname(__FILE__) . '/../sql/ExportDB.class.php');
 
 class User {
@@ -19,7 +21,8 @@ class User {
             $this->logout();
         }
         if(!empty($username) && !empty($password)){
-            if($login = $this->conn->query("SELECT * FROM `users` WHERE user = '$username'")){
+            header('Content-Type: application/json');
+            if($login = $this->conn->query("SELECT * FROM `users` WHERE user = '$username' OR email = '$username'")){
                 $row = $this->conn->fetchAssoc($login);
                 if((int) $row > 0){
                     $pass = $row['pass'] ?? 'default';
@@ -29,15 +32,37 @@ class User {
                         $_SESSION['user'] = $row['user'];
                         $_SESSION['email'] = $row['email'];
                         $_SESSION['rank'] = $row['rank'];
-                        $_SESSION['auth'] = [ 'time' => time(), 'ip' => $_SERVER['REMOTE_ADDR'], 'uAgent' => $_SERVER['HTTP_USER_AGENT'],'logged' => true];
-                        header("Location: https://$_SERVER[HTTP_HOST]/dash");
+                        $_SESSION['auth'] = [ 'time' => time(), 'ip' => $_SERVER['REMOTE_ADDR'], 'logged' => true];
+                        $return = array(
+                            'Logged' => true,
+                            'user' => $row['user'],
+                            'redirect' => "/dash"
+                        );
+                        http_response_code(200);
+                        echo json_encode($return);
                     }else{
-                        echo "Incorrect password, $username!";
+                        $error = array(
+                            'code' => '0',
+                            'message' => "Incorrect password, $username!",
+                            'file' => '0',
+                            'line' => '0'
+                        );
+                        http_response_code(404);
+                        echo json_encode($error);
                     }
                 }else{
-                    echo "User not found, $username!";
+                    $error = array(
+                        'code' => '0',
+                        'message' => "User not found, $username!",
+                        'file' => '0',
+                        'line' => '0'
+                    );
+                    http_response_code(404);
+                    echo json_encode($error);
                 }
-            }else{
+            }
+            /*else{
+                header('Content-Type: application/json');
                 if (preg_match("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,5}$/", $username)) {
                     if($login = $this->conn->query("SELECT * FROM `users` WHERE email = '$username'")){
                         $row = $this->conn->fetchAssoc($login);
@@ -61,33 +86,14 @@ class User {
                 }else{
                     echo 'invalid email';
                 }
-            }
+            }*/
 
-        }else{
-            return "#0x8a4nP";
-        }
-    }
-    function register($user,$email,$pass,$fullname,$birth){
-        $pass = $this->password($pass);
-        $birth = DateTime::createFromFormat('d/m/Y',$birth);
-        $birth = $birth->format('Y-m-d');
-        $regdate = date("Y-m-d H:i:s");
-        $arrU = array(
-            'user'=>$user,
-            'email'=>$email,
-            'pass'=>$pass,
-            'fullname'=>$fullname,
-            'birthdate'=>$birth,
-            'registered'=>$regdate,
-            'status'=>'0',
-            'rank'=>'0'
-        );
-        if($this->conn->insert('users',$arrU)){
-            return true;
         }else{
             return false;
         }
-        
+    }
+    function register($username,$email,$password,$fullname,$birth){
+    
     }
     private function password($pass){
         $pass = password_hash($pass,PASSWORD_ARGON2ID);
@@ -101,9 +107,14 @@ class User {
         // user verify acc hash
     }
 
-    public function session(){
+    function info($info){
+        $info = $_SESSION[$info];
+        return $info;
+    }
+
+    function session(){
         @session_start();
-        if(isset($_SESSION['auth']['logged'])){
+        if(isset($_SESSION['auth']) && $_SESSION['auth'] == true){
             if($_SESSION['auth']['ip'] !== $_SERVER['REMOTE_ADDR']){
                 session_destroy();
                 header("Location: http://myblog.dot/login");
@@ -121,19 +132,12 @@ class User {
         }
     }
 
-    private function logout(){
+    function logout(){
         @session_start();
         unset($_SESSION);
         @session_destroy();
+        header('Location: http://test.myblog.dot/');
     }
-
-    public function sanitize($data){
-        $data = trim($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
-
-
 }
 
 ?>

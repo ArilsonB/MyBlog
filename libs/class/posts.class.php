@@ -1,4 +1,5 @@
 <?php
+    use MyB\ExportDB as ExportDB;
     require_once(dirname(__FILE__) . '/../sql/ExportDB.class.php');
     class Post {
         private static $uid = 0;
@@ -9,7 +10,6 @@
         public static function create($title,$content){
             $db = self::connectDB();
             $name = self::pName($title);
-            echo $name;
             if(empty($name)){
                 die('error');
             }
@@ -43,9 +43,6 @@
             $str = preg_replace('/[^a-z0-9]/i', '-', $str);
             $str = preg_replace('/_+/', '-', $str);
             $str = str_replace('--','-', $str);
-            if(substr($str, 0, 1) == '-'){
-                $str = substr($str, 1);
-            }
             if(substr($str, -1) == '-'){
                 $str = substr($str, 0, -1);
             }
@@ -56,7 +53,7 @@
         /* List */
         public static function list($oder,$function = null){
             $db = self::connectDB();
-            $eq = $db->query('SELECT * FROM `posts` LIMIT 10');
+            $eq = $db->query('SELECT * FROM `posts` ORDER BY date DESC LIMIT 10 ');
             foreach($eq as $row){
                 if($function){
                     call_user_func($function,$row);

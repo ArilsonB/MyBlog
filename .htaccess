@@ -10,7 +10,7 @@ ErrorDocument 503 /libs/error/error.php
     Order Allow,Deny
     Deny from All
 </Files>
-<Files ~ "\.ini$">  
+<Files ~ "\.ini$">
     Order Allow,Deny
     Deny from All
 </Files>
@@ -24,6 +24,10 @@ Options All -Indexes
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)$ ./index.php
+
+    RewriteCond %{QUERY_STRING} (<|%3C).*script.*(>|%3E) [NC,OR]
+    RewriteCond %{QUERY_STRING} GLOBALS(=|[|%[0-9A-Z]{0,2}) [OR]
+    RewriteCond %{QUERY_STRING} _REQUEST(=|[|%[0-9A-Z]{0,2})
 
     # BLOCK UNNECESSARY REQUEST METHODS
     RewriteCond %{REQUEST_METHOD} ^(CONNECT|DEBUG|DELETE|MOVE|PUT|TRACE|TRACK) [NC]

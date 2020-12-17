@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="editor.css">
+</head>
+<body>
+<form method="GET">
+    <textarea name="text" id="" class="myb-editor"></textarea>
+    <button type="submit">Enviar</button>
+</form>
+
+<br />
+<myb-editor>
+    <myb-toolbar>
+        <myb-select>
+            <myb-option>Paragraph</myb-option>
+            <myb-option>Paragraph</myb-option>
+            <myb-option>Paragraph</myb-option>
+        </myb-select>
+        <button>Btn 1</button>
+        <button>Btn 2</button>
+        <button>Btn 3</button>
+        <button>Btn 4</button>
+        <button>Btn 5</button>
+        <button>Btn 6</button>
+        <button>Btn 7</button>
+        <button>Btn 8</button>
+        <button>Btn 9</button>
+        <button>Btn 10</button>
+    </myb-toolbar>
+    <myb-textarea>
+    
+    </myb-textarea>
+    <myb-footer>
+    </myb-footer>
+</myb-editor>
+
+<script src="editor.js"></script>
+<script>
+    const myb = new MybEditor({
+        textarea: ".myb-editor"
+    });
+</script>
+</body>
+</html>

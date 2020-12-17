@@ -1,0 +1,13 @@
+{
+    "name": "tryups/myblog",
+    "description": "MyBlog Simple Blog CMS",
+    "type": "project",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "TryUps Inc",
+            "email": "arilsonbrj@gmail.com"
+        }
+    ],
+    "require": {}
+}
