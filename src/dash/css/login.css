@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+/* #A8EB12,#051937 */
+
+body {
+    background: #eee;
+    font-family: 'Open Sans', sans-serif;
+}
+
+div.box {
+    position: relative;
+    border-radius: 10px;
+    background: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+    padding: 10px;
+    margin: calc(50% - 1.5 * 300px) auto;
+    width: 300px;
+    height: 200px;
+    transition: height linear 0.5s;
+    box-shadow: 2px 1px 5px rgba(0,0,0,0.2);
+}
+
+div.box:hover {
+    height: 300px;
+}
+
+h2 {
+    width: 100%;
+    text-align: center;
+    margin: 5px 0px;
+    text-shadow: 2px 3px 0px #898999;
+    line-height: 1.2;
+    font-weight: 900;
+    color: #fff;
+}
+
+input[type=text], input[type=password], input[type=email] {
+    padding: 10px;
+    width: 100%;
+    font-size:15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline:0;
+    color: #333;
+    margin: 5px 0px;
+    font-weight: bold;
+}
+
+input[type=submit] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid deepskyblue;
+    font-size: 15px;
+    color: #000;
+    font-weight: bold;
+    margin: 5px 0px;
+    outline: 0;
+    transition: ease-in all 0.5s;
+    background: #fff;
+}
+input[type=submit]:hover {
+    background: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+    border: 1px solid #ccc;
+    color:#fff;
+}
+label {
+    position: relative;
+    width: 100%;
+    float: left;
+    padding: 5px;
+}
+select {
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 5px;
+    outline: 0;
+}

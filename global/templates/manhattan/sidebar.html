@@ -1,0 +1,10 @@
+<section>
+    <h2>Tecnologia</h2>
+    <%List 'posts' by 'cat:%Technology%' limit '10'%>
+        <article class="list-item by-classname">
+            <h3>%post:name%</h3>
+            <small>%post:date% | %post:author%</small>
+            <span>%post:exerpt%</span>
+        </article>
+    <%EndList%>
+</section>

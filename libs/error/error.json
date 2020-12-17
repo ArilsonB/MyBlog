@@ -1,0 +1,20 @@
+{
+    "402":{
+        "code":"402",
+        "message":"",
+        "file":"%s",
+        "line":"%s"
+    },
+    "404":{
+        "code":"404",
+        "message": "The URL '%s' not found on this server.",
+        "file":"%s",
+        "line":"%s"
+    },
+    "500":{
+        "code":"500",
+        "message":"",
+        "file":"%s",
+        "line":"%s"
+    }
+}

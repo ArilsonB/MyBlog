@@ -1,0 +1,38 @@
+{
+    "friendly_urls":{
+        "home":"/",
+        "p":"/p/(?'page_number'[0-9]+)/",
+        "dash":"/(?'dash'login|register|dash|logout)",
+        "dash_files":"/dash/(.*)",
+        "search":"/search",
+        "category":"/(category|cat)*/(?'category'[^/]+)/",
+        "album":"/album/(?'album'[^/]+)/",
+        "sitemap":"/(sitemap|sitemap.xml)",
+        "robots":"/robots.txt",
+        "feed":"/(feed|rss.xml)",
+        "static":"/static/(.*)",
+        "watch":"/watch/(.*)",
+        "install":"/install",
+        "post":"/(?'year'[0-9]{4}+)*/(?'month'[0-9]{2}+)*/(?'postname'[^/]+).html",
+        "picture":"/(picture|pic|img|images|image)/(?'picture'[^/]+).([a-z]{3,4}$)",
+        "archive_year":"/(?'year'[0-9]{4}+)/",
+        "archive_year_month":"/(?'year'[0-9]{4}+)*/(?'month'[0-9]{2}+)/",
+        "archive_year_month_day":"/(?'year'[0-9]{4}+)*/(?'month'[0-9]{2}+)*/(?'day'[0-9]{2})/",
+        "page":"/(?'page'[^/]+)",
+        "pagez": "/(?'page'[^/]+)/"
+    },
+    "defaults":{
+        "home":"/",
+        "post":"/(?'year'[0-9]{4}+)/(?'month'[0-9]{2}+)/(?'postname'[^/]+).html",
+        "page":"/(?'page'[^/]+)/",
+        "category":"/category/(?'category'[^/]+)/",
+        "dash":"/(?'dash'login|register)/",
+        "album":"/album/(?'album'[^/]+)/",
+        "picture":"/(picture|pic|img|images)/(?'picture'[^/]+).([a-z]{3,4}$)",
+        "archive_year":"/(?'year'[0-9]{4}+)/",
+        "archive_year_month":"/(?'year'[0-9]{4}+)*/(?'month'[0-9]{2}+)/",
+        "archive_year_month_day":"/(?'year'[0-9]{4}+)*/(?'month'[0-9]{2}+)*/(?'day'[0-9]{2})/",
+        "sitemap":"/sitemap.xml",
+        "robots":"/robots.txt"
+    }
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%title left='Meu Blog' center='–' right='Iala!';%></title>
+    <link rel="stylesheet" href="%styles:default%">
+</head>
+<body>
+    <header
+        style="background-image: url('static/assets/item.jpg');">
+        <nav class="home-nav">
+            <div class="nav-inner">
+                <div class="logo">
+                    <h1 class="logo-manhattan"><a href="%url:home%" class="logo-link">Manhattan</a></h1>
+                </div>
+                <ul class="left-menu">
+                    <li class="menu-item"><a href="%url:home%" class="menu-btn">Home</a></li>
+                    <li class="menu-item"><a href="http://" class="menu-btn">Latest News</a></li>
+                    <li class="menu-item"><a href="http://" class="menu-btn">Link 3</a></li>
+                    <li class="menu-item"><a href="http://" class="menu-btn">Link 4</a></li>
+                    <li class="menu-item"><a href="http://" class="menu-btn">Link 5</a></li>
+                    <li class="menu-item"><a href="http://" class="menu-btn">Link 6</a></li>
+                    <li class="menu-item"><a href="http://" class="menu-btn">Link 7</a></li>
+                </ul>
+                <ul class="right-menu">
+                    <%check 'logged' false: %>
+                    <li class="menu-item"><a href="http://" class="menu-btn">Login</a></li>
+                    <li class="menu-item"><a href="http://" class="menu-btn">Register</a></li>
+                    <%check 'logged' true: %>
+                    <%get from:'user_menu';%>
+                    <%endcheck%>
+                </ul>
+            </div>
+        </nav>
+        <div class="header-slider">
+            <!-- Header Slider -->
+
+        </div>
+    </header>

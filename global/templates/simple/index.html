@@ -1,0 +1,23 @@
+<%include 'header';%>
+<div class="row">
+  <div class="leftcolumn">
+    <!-- LOAD 'posts' -->
+      <article class="card">
+        <h2><a href="%post:url%">%post_title%</a></h2>
+        <h5>%post_date% | %post_author% – %post_cat%</h5>
+        <div class="fakeimg" style="height:200px;">%postthumb%</div>
+        <p>%post_exerpt%</p>
+      </article>
+    <!-- ENDLOAD -->
+    <div class="pages">
+      <ul>
+        <!-- LOAD 'pages' -->
+          <li><a href="%pageUrl%" class="%ifActualPg%">%pageNum%</a></li>
+        <!-- ENDLOAD -->
+      </ul>
+    </div>
+  </div>
+<%include 'sidebar';%>
+</div>
+<%require 'functions';%>
+<%include 'footer';%>

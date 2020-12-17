@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: #eee
+}
+
+main {
+	position: relative;
+	float: left;
+	width: 960px;
+	margin: auto;
+	padding: 10px;
+}
+
+article {
+	background: #fff;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	padding: 10px;
+	width: 400px;
+	margin: 10px;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+article > img {
+	float: left;
+	display: block;
+	width: 80px;
+	height: 80px;
+	margin: 5px;
+}
+article > small {
+	
+}
+
+article > p {
+	float: left;
+}
